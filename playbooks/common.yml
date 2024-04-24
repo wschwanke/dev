@@ -1,0 +1,12 @@
+- hosts: localhost
+  tasks:
+  - name: All the libraries i love
+    become: true
+    ansible.builtin.apt:
+      pkg:
+      - fzf
+      - ripgrep
+      - xclip
+      - jq
+      - tldr
+      - shutter

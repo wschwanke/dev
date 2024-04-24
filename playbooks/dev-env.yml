@@ -1,0 +1,17 @@
+- hosts: localhost
+  tasks:
+    - name: Include main vars
+      ansible.builtin.include_vars:
+        file: vars.yml
+
+    - name: Debug
+      debug:
+        msg: "Home: {{ home }}, Dev: {{ dev }}"
+
+    - name: Copy dev env
+      ansible.builtin.copy:
+        src: "{{ dev }}/env/"
+        dest: "{{ home }}"
+        owner: "{{ username }}"
+        group: "{{ username }}"
+        mode: '0755'

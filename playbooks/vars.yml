@@ -1,0 +1,6 @@
+username: "juggurnot"
+email: "wschwanke@gmail.com"
+config: "{{ ansible_env.XDG_CONFIG }}"
+home: "{{ ansible_env.HOME }}"
+personal: "{{ home }}/personal"
+dev: "{{ personal }}/dev"
