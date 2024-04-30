@@ -1,0 +1,34 @@
+- name: Install Golang
+  hosts: localhost
+  become: yes
+  vars:
+    go_version: "1.22.2"  # Specify the desired Go version
+    go_root: /usr/local/go
+    go_path: /home/juggurnot/.local/go
+
+  tasks:
+    - name: Remove any existing Go installations
+      ansible.builtin.file:
+        path: "{{ go_root }}"
+        state: absent
+
+    - name: Download Go binaries
+      ansible.builtin.get_url:
+        url: "https://golang.org/dl/go{{ go_version }}.linux-amd64.tar.gz"
+        dest: "/tmp/go{{ go_version }}.linux-amd64.tar.gz"
+        mode: '0755'
+
+    - name: Extract Go binaries
+      ansible.builtin.unarchive:
+        src: "/tmp/go{{ go_version }}.linux-amd64.tar.gz"
+        dest: "/usr/local"
+        extra_opts: ['--strip-components=1']
+        creates: "{{ go_root }}/bin/go"
+
+    - name: Verify Go installation
+      command: go version
+      register: go_version_output
+
+    - name: Show Go version installed
+      ansible.builtin.debug:
+        msg: "{{ go_version_output.stdout }}"

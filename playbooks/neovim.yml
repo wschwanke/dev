@@ -6,6 +6,7 @@
       file: vars.yml
 
   - name: Remove old versions of neovim
+    become: true
     ansible.builtin.file:
        path: "{{ home }}/neovim"
        state: absent
@@ -16,15 +17,6 @@
        dest: "{{ home }}/neovim"
        depth: 1
        version: stable
-
-  - name: "Install neovim deps"
-    become: true
-    ansible.builtin.apt:
-      pkg:
-      - cmake
-      - gettext
-      - lua5.3
-      - liblua5.3-0-dev
 
   - name: Neovim Make Install
     become: true

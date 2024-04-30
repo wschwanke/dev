@@ -17,6 +17,8 @@
       - docker-compose
       - python3-pip
       - curl
+      - cmake
+      - gettext
 
   - name: Ensure group "docker" exists with correct gid
     become: true
