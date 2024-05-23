@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Prompt for sudo password
+read -sp "Enter your sudo password: " sudopass
+
+# Export the password as an environment variable for Ansible
+export ANSIBLE_BECOME_PASS=$sudopass
+
+echo "Running initial setup..."
+echo $sudopass | sudo -S ./scripts/setup
+
+echo "Installing Sauce Code Pro fonts..."
+./scripts/fonts
+
+echo "Changing to the playbook directory..."
+cd ./playbooks
+
+echo "Creating an ssh key for Github..."
+ansible-playbook ssh.yml --become --become-method=sudo
+echo "Add the SSH key to your Github account before continuing..."
+read _
+
+echo "Setting up git submodule..."
+git submodule init
+git submodule update
+
+echo "Installing system environment..."
+ansible-playbook core.yml --become --become-method=sudo
+ansible-playbook common.yml --become --become-method=sudo
+ansible-playbook dev-env.yml
+ansible-playbook rust.yml --become --become-method=sudo
+ansible-playbook lua.yml --become --become-method=sudo
+ansible-playbook go.yml --become --become-method=sudo
+ansible-playbook nvm.yml --become --become-method=sudo
+ansible-playbook neovim.yml --become --become-method=sudo
+ansible-playbook tmux.yml --become --become-method=sudo
+
+unset ANSIBLE_BECOME_PASS
+
+echo "______ _____ _   _ _____ _____ _   _  ___________ "
+echo "|  ___|_   _| \ | |_   _/  ___| | | ||  ___|  _  \\"
+echo "| |_    | | |  \| | | | \ \`--.| |_| || |__ | | | |"
+echo "|  _|   | | | . \` | | |  \`--. \  _  ||  __|| | | |"
+echo "| |    _| |_| |\  |_| |_/\__/ / | | || |___| |/ / "
+echo "\_|    \___/\_| \_/\___/\____/\_| |_/\____/|___/  "
+echo "______ _____ _____ _____  _   _                   "
+echo "| ___ \_   _|_   _/  __ \| | | |                  "
+echo "| |_/ / | |   | | | /  \/| |_| |                  "
+echo "| ___ \ | |   | | | |    |  _  |                  "
+echo "| |_/ /_| |_  | | | \__/\| | | |_ _ _             "
+echo "\____/ \___/  \_/  \____/\_| |_(_|_|_)            "
+echo "                                                  "

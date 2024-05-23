@@ -1,0 +1,28 @@
+[env]
+TERM = xterm-256color
+
+
+[font]
+size = 15
+
+[font.normal]
+family = "SauceCodePro Nerd Font Mono"
+
+[font.bold]
+family = "SauceCodePro Nerd Font Mono, Bold"
+
+[font.italic]
+family = "SauceCodePro Nerd Font Mono, Italic"
+
+[font.bold_italic]
+family = "SauceCodePro Nerd Font Mono, Bold Italic"
+
+
+[window]
+
+[window.dimensions]
+columns = 250
+lines = 50
+
+[scrolling]
+history = 50000

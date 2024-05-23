@@ -1,0 +1,19 @@
+- name: Install NVM, Node.js, and Yarn
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Download and install NVM
+      ansible.builtin.shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+      args:
+        creates: "{{ ansible_env.HOME }}/.nvm"
+
+    - name: Install Node.js LTS using NVM
+      ansible.builtin.shell: |
+        source "$HOME/.nvm/nvm.sh"
+        nvm install --lts
+        nvm alias default "$(nvm current)"
+      args:
+        executable: /bin/bash
+
+    - name: Install Yarn globally
+      ansible.builtin.shell: npm install -g yarn

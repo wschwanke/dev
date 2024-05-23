@@ -1,35 +1,23 @@
-- hosts: localhost
-  vars:
-    username: "thejuggurnot"
-    email: "wschwanke@gmail.com"
-    ssh_key_filename: "id_thejuggurnot_rsa"
-    config: "{{ lookup('ansible.builtin.env', 'XDG_CONFIG') }}"
-    home: "{{ lookup('ansible.builtin.env', 'HOME') }}"
-    zsh_dependencies: []
+- name: Install Zsh and Oh My Zsh
+  hosts: localhost
+  become: yes
   tasks:
-  - name: Ensure Zsh with dependencies are installed
-    apt:
-      name: "{{ ['zsh'] + zsh_dependencies }}"
-      state: present
-      update_cache: yes
-    become: true
+    - name: Install Zsh
+      package:
+        name: zsh
+        state: present
 
-  - name: Ensure zsh is the default shell
-    user:
-      name: "{{ username }}"
-      shell: "/usr/bin/zsh"
-    become: true
+    - name: Set Zsh as default shell
+      ansible.builtin.command: chsh -s /bin/zsh "{{ ansible_user_id }}"
 
-  - name: Download Oh My Zsh installation script
-    get_url:
-      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-      dest: /tmp/install_ohmyzsh.sh
+    - name: Install Oh My Zsh
+      ansible.builtin.shell: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      args:
+        creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
 
-  - name: Run Oh My Zsh installation script
-    command: sh /tmp/install_ohmyzsh.sh --unattended
-    register: ohmyzsh_result
-    failed_when: "'FAILED' in ohmyzsh_result.stderr"
-
-  - name: sets default shell to zsh
-    become: true
-    ansible.builtin.command: chsh -s /usr/bin/zsh
+    - name: Set Zsh theme (optional)
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.zshrc"
+        regexp: '^ZSH_THEME='
+        line: 'ZSH_THEME="agnoster"'
+        backup: yes

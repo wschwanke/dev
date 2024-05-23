@@ -1,0 +1,22 @@
+- name: Generate SSH Key for GitHub
+  hosts: localhost
+  gather_facts: no
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Ensure SSH directory exists
+      file:
+        path: ~/.ssh
+        state: directory
+        mode: '0700'
+
+    - name: Generate SSH Key
+      ansible.builtin.shell: ssh-keygen -t ed25519 -C "{{ email }}" -f ~/.ssh/github_rsa -N ''
+
+    - name: Print SSH Public Key
+      ansible.builtin.command: cat ~/.ssh/github_rsa.pub
+      register: ssh_key
+
+    - name: Display SSH Public Key
+      ansible.builtin.debug:
+        msg: "{{ ssh_key.stdout }}"
