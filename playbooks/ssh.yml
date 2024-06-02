@@ -8,7 +8,7 @@
       file:
         path: ~/.ssh
         state: directory
-        mode: '0700'
+        mode: "0700"
 
     - name: Generate SSH Key
       ansible.builtin.shell: ssh-keygen -t ed25519 -C "{{ email }}" -f ~/.ssh/github_rsa -N ''

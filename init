@@ -4,6 +4,7 @@
 read -sp "Enter your sudo password: " sudopass
 
 # Export the password as an environment variable for Ansible
+export ANSIBLE_LOCALHOST_WARNING=false
 export ANSIBLE_BECOME_PASS=$sudopass
 
 echo "Running initial setup..."
@@ -16,7 +17,7 @@ echo "Changing to the playbook directory..."
 cd ./playbooks
 
 echo "Creating an ssh key for Github..."
-ansible-playbook ssh.yml --become --become-method=sudo
+ansible-playbook ssh.yml
 echo "Add the SSH key to your Github account before continuing..."
 read _
 
@@ -25,15 +26,18 @@ git submodule init
 git submodule update
 
 echo "Installing system environment..."
-ansible-playbook core.yml --become --become-method=sudo
-ansible-playbook common.yml --become --become-method=sudo
+ansible-playbook git.yml
+ansible-playbook core.yml
+ansible-playbook common.yml 
+ansible-playbook dotnet.yml
 ansible-playbook dev-env.yml
-ansible-playbook rust.yml --become --become-method=sudo
-ansible-playbook lua.yml --become --become-method=sudo
-ansible-playbook go.yml --become --become-method=sudo
-ansible-playbook nvm.yml --become --become-method=sudo
-ansible-playbook neovim.yml --become --become-method=sudo
-ansible-playbook tmux.yml --become --become-method=sudo
+ansible-playbook rust.yml
+ansible-playbook lua.yml
+ansible-playbook go.yml
+ansible-playbook nvm.yml
+ansible-playbook neovim.yml
+ansible-playbook tmux.yml
+ansible-playbook zsh.yml
 
 unset ANSIBLE_BECOME_PASS
 

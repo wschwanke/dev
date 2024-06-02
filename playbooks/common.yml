@@ -1,12 +1,14 @@
-- hosts: localhost
+- name: Install common libraries
+  hosts: localhost
+  become: true
+
   tasks:
-  - name: All the libraries i love
-    become: true
-    ansible.builtin.apt:
-      pkg:
-      - fzf
-      - ripgrep
-      - xclip
-      - jq
-      - tldr
-      - shutter
+    - name: All the libraries i love
+      ansible.builtin.apt:
+        pkg:
+          - fzf
+          - ripgrep
+          - xclip
+          - jq
+          - tldr
+          - shutter

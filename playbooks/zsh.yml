@@ -1,11 +1,12 @@
 - name: Install Zsh and Oh My Zsh
   hosts: localhost
-  become: yes
+  become: true
   tasks:
     - name: Install Zsh
-      package:
-        name: zsh
-        state: present
+      become: true
+      ansible.builtin.apt:
+        pkg:
+          - zsh
 
     - name: Set Zsh as default shell
       ansible.builtin.command: chsh -s /bin/zsh "{{ ansible_user_id }}"
@@ -15,9 +16,5 @@
       args:
         creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
 
-    - name: Set Zsh theme (optional)
-      lineinfile:
-        path: "{{ ansible_env.HOME }}/.zshrc"
-        regexp: '^ZSH_THEME='
-        line: 'ZSH_THEME="agnoster"'
-        backup: yes
+    - name: Install Gruvbox
+      ansible.builtin.shell: curl -L https://raw.githubusercontent.com/sbugzu/gruvbox-zsh/master/gruvbox.zsh-theme > ~/.oh-my-zsh/custom/themes/gruvbox.zsh-theme

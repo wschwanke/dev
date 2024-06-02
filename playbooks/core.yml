@@ -1,48 +1,29 @@
-- hosts: localhost
+- name: Setup Docker
+  hosts: localhost
+  become: true
   tasks:
+    - name: Include main vars
+      ansible.builtin.include_vars:
+        file: vars.yml
 
-  - name: Include main vars
-    ansible.builtin.include_vars:
-      file: vars.yml
+    - name: "Install required software"
+      ansible.builtin.apt:
+        pkg:
+          - git
+          - docker
+          - docker-compose
+          - python3-pip
+          - curl
+          - cmake
+          - gettext
 
-  - name: "Install required software"
-    become: true
-    apt:
-      name: "{{ packages }}"
-      state: present
-    vars:
-      packages:
-      - git
-      - docker
-      - docker-compose
-      - python3-pip
-      - curl
-      - cmake
-      - gettext
+    - name: Ensure group "docker" exists with correct gid
+      ansible.builtin.group:
+        name: docker
+        state: present
 
-  - name: Ensure group "docker" exists with correct gid
-    become: true
-    ansible.builtin.group:
-      name: docker
-      state: present
-
-  - name: Add user to docker group
-    become: true
-    ansible.builtin.user:
-      name: "{{ username }}"
-      groups: docker
-      append: true
-
-  - name: user.name for git config
-    become_user: "{{ username }}"
-    community.general.git_config:
-      name: user.name
-      scope: global
-      value: "{{ username }}"
-
-  - name: user.email for git config
-    become_user: "{{ username }}"
-    community.general.git_config:
-      name: user.email
-      scope: global
-      value: "{{ email }}"
+    - name: Add user to docker group
+      ansible.builtin.user:
+        name: "{{ username }}"
+        groups: docker
+        append: true

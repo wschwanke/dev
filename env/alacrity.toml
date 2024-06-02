@@ -3,26 +3,25 @@ TERM = xterm-256color
 
 
 [font]
-size = 15
+size = 14
 
 [font.normal]
 family = "SauceCodePro Nerd Font Mono"
 
 [font.bold]
-family = "SauceCodePro Nerd Font Mono, Bold"
+family = "SauceCodePro Nerd Font Mono"
 
 [font.italic]
-family = "SauceCodePro Nerd Font Mono, Italic"
+family = "SauceCodePro Nerd Font Mono"
 
 [font.bold_italic]
-family = "SauceCodePro Nerd Font Mono, Bold Italic"
-
+family = "SauceCodePro Nerd Font Mono"
 
 [window]
 
 [window.dimensions]
-columns = 250
-lines = 50
+columns = 150
+lines = 48
 
 [scrolling]
 history = 50000

@@ -1,6 +1,6 @@
 - name: Install NVM, Node.js, and Yarn
   hosts: localhost
-  become: yes
+
   tasks:
     - name: Download and install NVM
       ansible.builtin.shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash

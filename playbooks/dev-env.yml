@@ -9,9 +9,10 @@
         msg: "Home: {{ home }}, Dev: {{ dev }}"
 
     - name: Copy dev env
+      become: true
       ansible.builtin.copy:
         src: "{{ dev }}/env/"
         dest: "{{ home }}"
         owner: "{{ username }}"
         group: "{{ username }}"
-        mode: '0755'
+        mode: "0755"
