@@ -36,6 +36,7 @@ ansible-playbook lua.yml
 ansible-playbook go.yml
 ansible-playbook nvm.yml
 ansible-playbook neovim.yml
+ansible-playbook neovim-config.yml
 ansible-playbook tmux.yml
 ansible-playbook zsh.yml
 

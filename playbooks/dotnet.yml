@@ -20,3 +20,9 @@
     - name: Update packages
       apt:
         update_cache: yes
+
+    - name: Install dotnet-sdk-8.0
+      apt:
+        name: dotnet-sdk-8.0
+        state: present
+

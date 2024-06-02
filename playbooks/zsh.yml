@@ -1,6 +1,7 @@
 - name: Install Zsh and Oh My Zsh
   hosts: localhost
-  become: true
+  vars_files:
+    - vars.yml
   tasks:
     - name: Install Zsh
       become: true
@@ -9,12 +10,20 @@
           - zsh
 
     - name: Set Zsh as default shell
-      ansible.builtin.command: chsh -s /bin/zsh "{{ ansible_user_id }}"
+      become: true
+      ansible.builtin.command:
+        cmd: chsh -s /bin/zsh "{{ username }}"
 
     - name: Install Oh My Zsh
-      ansible.builtin.shell: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      ansible.builtin.shell: |
+        if [ ! -d "{{ ansible_env.HOME }}/.oh-my-zsh" ]; then
+          sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        fi
       args:
-        creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+        executable: /bin/zsh
 
     - name: Install Gruvbox
-      ansible.builtin.shell: curl -L https://raw.githubusercontent.com/sbugzu/gruvbox-zsh/master/gruvbox.zsh-theme > ~/.oh-my-zsh/custom/themes/gruvbox.zsh-theme
+      ansible.builtin.shell: |
+        curl -L https://raw.githubusercontent.com/sbugzu/gruvbox-zsh/master/gruvbox.zsh-theme > ~/.oh-my-zsh/custom/themes/gruvbox.zsh-theme
+      args:
+        executable: /bin/zsh
