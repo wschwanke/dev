@@ -7,25 +7,19 @@ read -sp "Enter your sudo password: " sudopass
 export ANSIBLE_LOCALHOST_WARNING=false
 export ANSIBLE_BECOME_PASS=$sudopass
 
-echo "Running initial setup..."
-echo $sudopass | sudo -S ./scripts/setup
-
-echo "Installing Sauce Code Pro fonts..."
-./scripts/fonts
-
 echo "Changing to the playbook directory..."
 cd ./playbooks
 
-echo "Creating an ssh key for Github..."
-ansible-playbook ssh.yml
-echo "Add the SSH key to your Github account before continuing..."
-read _
-
 echo "Installing system environment..."
-ansible-playbook git.yml
-ansible-playbook core.yml
-ansible-playbook common.yml 
-ansible-playbook zsh.yml
+ansible-playbook dotnet.yml
+ansible-playbook dev-env.yml
+ansible-playbook rust.yml
+ansible-playbook lua.yml
+ansible-playbook go.yml
+ansible-playbook nvm.yml
+ansible-playbook neovim.yml
+ansible-playbook neovim-config.yml
+ansible-playbook tmux.yml
 
 unset ANSIBLE_BECOME_PASS
 
