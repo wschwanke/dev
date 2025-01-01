@@ -11,10 +11,21 @@
         mode: "0700"
 
     - name: Generate SSH Key
-      ansible.builtin.shell: ssh-keygen -t ed25519 -C "{{ email }}" -f ~/.ssh/github_rsa -N ''
+      ansible.builtin.shell: ssh-keygen -t ed25519 -C "{{ email }}" -f ~/.ssh/github -N ''
+
+    - name: Generate Azure DevOps SSH Key
+      ansible.builtin.shell: ssh-keygen -t rsa-sha2-512 -f ~/.ssh/azure_devops -N ''
 
     - name: Print SSH Public Key
-      ansible.builtin.command: cat ~/.ssh/github_rsa.pub
+      ansible.builtin.command: cat ~/.ssh/github.pub
+      register: ssh_key
+
+    - name: Display SSH Public Key
+      ansible.builtin.debug:
+        msg: "{{ ssh_key.stdout }}"
+
+    - name: Print SSH Public Key
+      ansible.builtin.command: cat ~/.ssh/azure_devops.pub
       register: ssh_key
 
     - name: Display SSH Public Key
