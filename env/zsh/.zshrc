@@ -42,3 +42,10 @@ export LANG=en_US.UTF-8
 export EDITOR='nvim'
 
 
+
+# fnm
+FNM_PATH="/home/juggurnot/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/juggurnot/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
