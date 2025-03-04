@@ -64,7 +64,7 @@ echo "========================================="
 
 sudo pacman -S hyprland qt5-wayland qt6-wayland
 sudo pacman -S swaync pipewire wireplumber
-sudo pacman -S hyprpolkitagent wofi
+sudo pacman -S hyprpolkitagent walker-bin hypridle hyprpaper hyprlock
 
 yay -S waybar xsh-desktop-portal-hyprland-git
 
