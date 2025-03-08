@@ -55,17 +55,19 @@ echo "========================================="
 
 sudo pacman -S lua51 luarocks
 
-luarocks install luacheck --local
-luarocks install jsregexp --local
+luarocks install luacheck jsregexp --local
 
 echo "========================================="
 echo "= Hyprland                              ="
 echo "========================================="
 
-sudo pacman -S hyprland qt5-wayland qt6-wayland
-sudo pacman -S swaync pipewire wireplumber
-sudo pacman -S hyprpolkitagent walker-bin hypridle hyprpaper hyprlock
+sudo pacman -S hyprland qt5-wayland qt6-wayland swaync pipewire wireplumber hyprpolkitagent hypridle hyprpaper hyprlock xdg-desktop-portal-hyprland nemo
 
-yay -S waybar xsh-desktop-portal-hyprland-git
+yay -S waybar hyprshot walker-bin
 
-sudo pacman -S nemo
+
+echo "========================================="
+echo "= Datagrip                              ="
+echo "========================================="
+
+yay -S datagrip datagrip-jre

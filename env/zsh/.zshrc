@@ -24,24 +24,20 @@ zinit snippet OMZP::command-not-found
 autoload -U compinit && compinit
 
 source_if_exists ~/.config/zsh/history.zsh
-source_if_exists ~/.config/zsh/aliases.zsh
+source_if_exists ~/.config/zsh/alias.zsh
 
 eval "$(starship init zsh)"
 
 bindkey -v
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+bindkey '^n' history-substring-search-up
+bindkey '^p' history-substring-search-down
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # User configuration
-export MANPATH="/usr/local/man:$MANPATH"
-export LANG=en_US.UTF-8
-export EDITOR='nvim'
-export XDG_CONFIG_HOME=$HOME/.config
-export GOPATH=$HOME/.local/go
-export GIT_EDITOR=$VIM
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+if [[ -z "$TMUX" ]]; then
+    source ~/.zprofile
+fi
 
 # NVM
 export NVM_DIR="$HOME/.config/nvm"
@@ -58,30 +54,8 @@ done
 
 bindkey -s ^f "tmux-sessionizer\n"
 
+# Fix for oh-my-zsh git not working with ggp
 function git_current_branch() {
   ref=$(git symbolic-ref HEAD 2>/dev/null)
   echo "${ref#refs/heads/}"
 }
-
-addToPath() {
-    if [[ "$PATH" != *"$1"* ]]; then
-        export PATH=$PATH:$1
-    fi
-}
-
-addToPathFront() {
-    if [[ "$PATH" != *"$1"* ]]; then
-        export PATH=$1:$PATH
-    fi
-}
-
-addToPathFront $HOME/.local/.npm-global/bin
-addToPathFront $HOME/.local/scripts
-addToPathFront $HOME/.local/bin
-addToPathFront ./node_modules/.bin
-addToPath $HOME/.fzf/bin
-addToPath $HOME/.cargo/bin
-addToPath $HOME/.cargo/env
-addToPath $HOME/.zig/master
-addToPath $HOME/.dotnet/tools
-addToPathFront ${ZDOTDIR:-~}/.zsh_functions
