@@ -61,9 +61,13 @@ echo "========================================="
 echo "= Hyprland                              ="
 echo "========================================="
 
-sudo pacman -S hyprland qt5-wayland qt6-wayland swaync pipewire wireplumber hyprpolkitagent hypridle hyprpaper hyprlock xdg-desktop-portal-hyprland nemo
+sudo pacman -S hyprland \
+    qt5-wayland qt6-wayland egl-wayland \
+    pipewire wireplumber \
+    swaync hyprpolkitagent hypridle hyprpaper hyprlock xdg-desktop-portal-hyprland \
+    nemo
 
-yay -S waybar hyprshot walker-bin
+yay -S waybar hyprshot walker-bin rose-pine-cursor rose-pine-hyprcursor
 
 
 echo "========================================="
