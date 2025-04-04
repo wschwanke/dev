@@ -4,7 +4,7 @@ echo "========================================="
 echo "= Core Packages                         ="
 echo "========================================="
 
-sudo pacman -S git python3 python-pip curl cmake gettext base-devel ninja fzf ripgrep xclip jq tldr
+sudo pacman -S git python3 python-pip curl cmake gettext base-devel ninja fzf ripgrep xclip jq tldr inotify-tools
 
 echo "========================================="
 echo "= Dev Programs                          ="

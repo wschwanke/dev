@@ -1,9 +1,10 @@
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
 fi
-if [ ! -f "$SSH_AUTH_SOCK" ]; then
-    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
-fi
+#
+# if [ ! -f "$SSH_AUTH_SOCK" ]; then
+#     source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+# fi
 
 source_if_exists () {
     if test -r "$1"; then
@@ -28,7 +29,7 @@ HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
 zinit snippet OMZP::git
 zinit snippet OMZP::command-not-found
 
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit
 
 source_if_exists ~/.config/zsh/history.zsh
 source_if_exists ~/.config/zsh/alias.zsh

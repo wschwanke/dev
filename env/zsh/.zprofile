@@ -23,8 +23,10 @@ addToPathFront $HOME/.local/.npm-global/bin
 addToPathFront $HOME/.local/scripts
 addToPathFront $HOME/.local/bin
 addToPathFront ./node_modules/.bin
+addToPathFront $HOME/.docker/completions
 
 addToPath $HOME/.fzf/bin
 addToPath $HOME/.cargo/bin
 addToPath $HOME/.cargo/env
 addToPath $HOME/.dotnet/tools
+addToPath $HOME/.luarocks/bin
