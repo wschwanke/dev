@@ -4,7 +4,7 @@ echo "========================================="
 echo "= Core Packages                         ="
 echo "========================================="
 
-sudo pacman -S git python3 python-pip curl cmake gettext base-devel ninja fzf ripgrep xclip jq tldr inotify-tools
+sudo pacman -S git python3 python-pip curl cmake gettext base-devel ninja fzf ripgrep wl-clipboard jq tldr inotify-tools
 
 echo "========================================="
 echo "= Dev Programs                          ="
@@ -34,7 +34,7 @@ echo "========================================="
 echo "= Rust                                  ="
 echo "========================================="
 
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+sudo pacman -s rust
 
 cargo install --locked tree-sitter-cli
 cargo install stylua
