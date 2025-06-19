@@ -65,9 +65,10 @@ sudo pacman -S hyprland \
     qt5-wayland qt6-wayland egl-wayland \
     pipewire wireplumber \
     swaync hyprpolkitagent hypridle hyprpaper hyprlock xdg-desktop-portal-hyprland \
-    nemo
+    nemo \
+    hyprshot hyprpicker
 
-yay -S waybar hyprshot walker-bin rose-pine-cursor rose-pine-hyprcursor
+yay -S waybar walker-bin rose-pine-cursor rose-pine-hyprcursor
 
 
 echo "========================================="
