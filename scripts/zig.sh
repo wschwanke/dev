@@ -1,5 +1,6 @@
 echo "========================================="
-echo "= Neovim                                ="
+echo "= Zig                                   ="
 echo "========================================="
 
-sudo pacman -S --no-confirm neovim
+sudo pacman -S --noconfirm --needed zig
+

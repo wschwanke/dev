@@ -1,5 +1,5 @@
 echo "========================================="
-echo "= Neovim                                ="
+echo "= Ghostty                               ="
 echo "========================================="
 
-sudo pacman -S --no-confirm neovim
+sudo pacman -S --noconfirm --needed ghostty

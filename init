@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+./scripts/git.sh
+
+./scripts/zsh.sh
+./scripts/fonts.sh
+
+./scripts/core.sh
+
+./scripts/hyprland.sh
+
+./scripts/zig.sh
+./scripts/dotnet.sh
+./scripts/go.sh
+./scripts/lua.sh
+./scripts/node.sh
+./scripts/rust.sh
+
+./scripts/neovim.sh
+./scripts/ghostty.sh
+./scripts/tmux.sh
+./scripts/datagrip.sh
+./scripts/tools.sh
+
+./scripts/comms.sh
+./scripts/browsers.sh

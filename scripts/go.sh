@@ -1,5 +1,5 @@
 echo "========================================="
-echo "= Neovim                                ="
+echo "= Go                                    ="
 echo "========================================="
 
-sudo pacman -S --no-confirm neovim
+sudo pacman -S go --noconfirm --needed
