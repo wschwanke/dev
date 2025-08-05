@@ -13,9 +13,8 @@
         "pulseaudio",
         "network",
         "power-profiles-daemon",
-        "cpu",
-        "memory",
         "temperature",
+        "battery",
         "clock",
         "tray"
     ],
@@ -111,5 +110,21 @@
             ]
         },
         "on-click": "pavucontrol"
+    },
+    "battery": {
+        "bat": "BAT0",
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "max-length": 25
     }
 }

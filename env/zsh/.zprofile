@@ -6,6 +6,8 @@ export XDG_CURRENT_DESKTOP="Hyprland"
 export GOPATH=$HOME/.local/go
 export GIT_EDITOR=$VIM
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+export npm_config_prefix="$HOME/.local"
+
 
 addToPath() {
     if [[ "$PATH" != *"$1"* ]]; then

@@ -3,8 +3,9 @@ echo "= Hyprland                              ="
 echo "========================================="
 
 sudo pacman -S  --noconfirm --needed hyprland \
+    pacman -S uwsm libnewt \
     qt5-wayland qt6-wayland egl-wayland \
-    pipewire wireplumber \
+    pipewire wireplumber pipewire-pulse pipewire-alsa pulseaudio pulseaudio-alsa pavucontrol \
     swaync hyprpolkitagent hypridle hyprpaper hyprlock xdg-desktop-portal-hyprland \
     nemo \
     hyprshot hyprpicker wl-clipboard

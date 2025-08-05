@@ -2,4 +2,4 @@ echo "========================================="
 echo "= Neovim                                ="
 echo "========================================="
 
-sudo pacman -S --no-confirm neovim
+sudo pacman -S --noconfirm neovim
