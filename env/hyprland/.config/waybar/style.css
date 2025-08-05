@@ -57,6 +57,10 @@ button {
     border-radius: 0 5px 5px 0;
 }
 
+#workspaces button:only-child {
+    border-radius: 5px;
+}
+
 #workspaces button.focused,
 #workspaces button.active {
     background-color: @green;

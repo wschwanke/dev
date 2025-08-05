@@ -4,6 +4,7 @@ echo "========================================="
 
 sudo pacman -S  --noconfirm --needed hyprland \
     pacman -S uwsm libnewt \
+    network-manager-applet \
     qt5-wayland qt6-wayland egl-wayland \
     pipewire wireplumber pipewire-pulse pipewire-alsa pulseaudio pulseaudio-alsa pavucontrol \
     swaync hyprpolkitagent hypridle hyprpaper hyprlock xdg-desktop-portal-hyprland \
