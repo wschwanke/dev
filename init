@@ -2,7 +2,7 @@
 
 ./scripts/omarchy.sh
 
-cp ./env ~/.dotfiles
+cp -r ./env ~/.dotfiles
 
 cd ~/dotfiles
 git init
