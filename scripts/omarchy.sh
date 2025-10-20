@@ -1,22 +1,25 @@
+yay -S paru-bin --noconfirm --needed
+
 echo "========================================="
 echo "= Browsers                              ="
 echo "========================================="
-paru -S --noconfirm --needed brave-bin zen-browser-bin
+paru -S --noconfirm --needed helium-browser-bin zen-browser-bin
 
 echo "========================================="
 echo "= Communications                        ="
 echo "========================================="
 sudo pacman -S discord --noconfirm --needed
-paru -S --noconfirm --needed slack-desktop  teams-for-linux
+paru -S --noconfirm --needed slack-desktop  teams-for-linux-bin
 
 echo "========================================="
 echo "= Tools                                 ="
 echo "========================================="
-sudo pacman -S --noconfirm --needed ninja ripgrep tldr jq tmux
+sudo pacman -S --noconfirm --needed ninja tmux
 paru -S --noconfirm --needed \
     datagrip datagrip-jre \
     android-studio \
-    postman-bin
+    postman-bin \
+    stow
 
 echo "========================================="
 echo "= Fonts                                 ="
@@ -27,7 +30,11 @@ paru -S --noconfirm --needed ttf-sourcecodepro-nerd
 echo "========================================="
 echo "= Development Languages                 ="
 echo "========================================="
-sudo pacman -S --noconfirm --needed zig rust go
+mise use go
+mise use rust
+mise use zig
+mise use bun
+mise use node@lts
 
 echo "========================================="
 echo "= Drivers                               ="
