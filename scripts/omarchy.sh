@@ -30,11 +30,11 @@ paru -S --noconfirm --needed ttf-sourcecodepro-nerd
 echo "========================================="
 echo "= Development Languages                 ="
 echo "========================================="
-mise use go
-mise use rust
-mise use zig
-mise use bun
-mise use node@lts
+mise use -g go
+mise use -g rust
+mise use -g zig
+mise use -g bun
+mise use -g node@lts
 
 echo "========================================="
 echo "= Drivers                               ="

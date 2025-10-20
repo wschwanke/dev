@@ -4,9 +4,10 @@
 
 cp ./env ~/.dotfiles
 
-cd .dotfiles
+cd ~/dotfiles
 git init
 git add -A
 git commit -m "Initial commit"
-stow * --adopt
+echo $PWD
+# stow * --adopt
 git restore *

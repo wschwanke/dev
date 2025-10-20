@@ -1,6 +1,0 @@
-[tools]
-bun = "latest"
-go = "latest"
-node = "lts"
-rust = "latest"
-zig = "latest"
