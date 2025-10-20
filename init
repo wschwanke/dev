@@ -3,11 +3,9 @@
 ./scripts/omarchy.sh
 
 cp -r ./env ~/.dotfiles
-
-cd ~/dotfiles
+cd ~/.dotfiles
 git init
 git add -A
 git commit -m "Initial commit"
-echo $PWD
-# stow * --adopt
+stow * --adopt
 git restore *
