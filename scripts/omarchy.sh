@@ -14,12 +14,13 @@ paru -S --noconfirm --needed slack-desktop  teams-for-linux-bin
 echo "========================================="
 echo "= Tools                                 ="
 echo "========================================="
-sudo pacman -S --noconfirm --needed ninja tmux
+sudo pacman -S --noconfirm --needed ninja tmux usage
 paru -S --noconfirm --needed \
     datagrip datagrip-jre \
     android-studio \
     postman-bin \
-    stow
+    stow \
+    opencode
 
 echo "========================================="
 echo "= Fonts                                 ="
@@ -35,6 +36,7 @@ mise use -g rust
 mise use -g zig
 mise use -g bun
 mise use -g node@lts
+mise settings add idiomatic_version_file_enable_tools node
 
 echo "========================================="
 echo "= Drivers                               ="
