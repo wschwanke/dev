@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ $1 == "--staging" ]; then
+  URLS=(
+    "https://staging.storkclub.bylandmark.io/"
+    "https://staging.dining.artofhospitality.io/"
+    "https://staging.app.artofhospitality.io/"
+  )
+else
+  URLS=(
+    "http://localhost:5173/"
+    "http://localhost:3030/"
+    "http://localhost:3001/"
+  )
+fi
+
+helium-browser "${URLS[@]}"
